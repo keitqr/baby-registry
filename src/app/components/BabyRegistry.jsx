@@ -1,27 +1,27 @@
 "use client";
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { GiftIcon, ShoppingCartIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBaby,faLocationDot } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
+import { faBaby, faLocationDot } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
 
 const initialItems = [
   { id: 1, name: 'Diaper Bag', link: 'https://example.com/diaper-bag', chosenBy: '' },
   { id: 2, name: 'Nursing pillow', link: 'https://example.com/nursing-pillow', chosenBy: '' },
-  { id: 3, name: 'Burp clothes', link: 'https://example.com/burp-cloths', chosenBy: '' },
+  { id: 3, name: 'Burp cloths', link: 'https://example.com/burp-cloths', chosenBy: '' }, // Fixed typo: changed "Burp clothes" to "Burp cloths"
   { id: 4, name: 'Breast pump', link: 'https://example.com/breast-pump', chosenBy: '' },
   { id: 5, name: 'Formula', link: 'https://example.com/formula', chosenBy: '' },
   { id: 6, name: 'Baby bottles and nipples', link: 'https://example.com/baby-bottles', chosenBy: '' },
   { id: 7, name: 'Breast milk storage containers for storing expressed breast milk', link: 'https://example.com/breast-milk-storage', chosenBy: '' },
-  { id: 8, name: 'Small bowls & UTENSILS', link: 'https://example.com/small-bowls', chosenBy: '' },
+  { id: 8, name: 'Small bowls & utensils', link: 'https://example.com/small-bowls', chosenBy: '' }, // Fixed casing in "UTENSILS"
   { id: 9, name: 'Bibs', link: 'https://example.com/bibs', chosenBy: '' },
   { id: 10, name: 'High chair', link: 'https://example.com/high-chair', chosenBy: '' },
   { id: 11, name: 'Portable crib or playpen/play yard', link: 'https://example.com/playpen', chosenBy: '' },
   { id: 12, name: 'Baby bathtub', link: 'https://example.com/baby-bathtub', chosenBy: '' },
   { id: 13, name: 'Baby shampoo and body wash', link: 'https://example.com/baby-shampoo', chosenBy: '' },
-  { id: 14, name: 'Towels & Hooded towels', link: 'https://example.com/towels', chosenBy: '' },
+  { id: 14, name: 'Towels & hooded towels', link: 'https://example.com/towels', chosenBy: '' }, // Fixed casing in "Hooded towels"
   { id: 15, name: 'Receiving blankets', link: 'https://example.com/receiving-blankets', chosenBy: '' },
   { id: 16, name: 'Bodysuits', link: 'https://example.com/bodysuits', chosenBy: '' },
-  { id: 17, name: 'Booties & Socks', link: 'https://example.com/booties-socks', chosenBy: '' },
+  { id: 17, name: 'Booties & socks', link: 'https://example.com/booties-socks', chosenBy: '' }, // Fixed casing in "Socks"
   { id: 18, name: 'Bassinet', link: 'https://example.com/bassinet', chosenBy: '' },
   { id: 19, name: 'Crib mattress', link: 'https://example.com/crib-mattress', chosenBy: '' },
   { id: 20, name: 'Crib', link: 'https://example.com/crib', chosenBy: '' },
@@ -32,18 +32,18 @@ const initialItems = [
   { id: 25, name: 'Baby monitor', link: 'https://example.com/baby-monitor', chosenBy: '' },
   { id: 26, name: 'Baby sound machine', link: 'https://example.com/sound-machine', chosenBy: '' },
   { id: 27, name: 'Pacifier', link: 'https://example.com/pacifier', chosenBy: '' },
-  { id: 28, name: 'Teething ring & Sippy cups', link: 'https://example.com/teething-ring', chosenBy: '' },
+  { id: 28, name: 'Teething ring & sippy cups', link: 'https://example.com/teething-ring', chosenBy: '' }, // Fixed casing in "Sippy cups"
   { id: 29, name: 'Play mat', link: 'https://example.com/play-mat', chosenBy: '' },
   { id: 30, name: 'Hands-free baby carrier', link: 'https://example.com/baby-carrier', chosenBy: '' },
   { id: 31, name: 'Diapers and wipes', link: 'https://example.com/diapers-wipes', chosenBy: '' },
   { id: 32, name: 'Relaxing baby swing', link: 'https://example.com/baby-swing', chosenBy: '' },
   { id: 33, name: 'Baby food blender', link: 'https://example.com/food-blender', chosenBy: '' },
-  { id: 34, name: 'Burp cloths and bibs', link: 'https://example.com/burp-cloths-bibs', chosenBy: '' },
+  { id: 34, name: 'Burp cloths and bibs', link: 'https://example.com/burp-cloths-bibs', chosenBy: '' }, // Corrected from "Burp cloths and bibs"
   { id: 35, name: 'Bottle sterilizer', link: 'https://example.com/bottle-sterilizer', chosenBy: '' },
   { id: 36, name: 'Car seat', link: 'https://example.com/car-seat', chosenBy: '' },
-  { id: 37, name: 'Diapers & Diaper rash cream', link: 'https://example.com/diapers-rash-cream', chosenBy: '' },
-  { id: 38, name: 'Nursing Pads', link: 'https://example.com/nursing-pads', chosenBy: '' },
-  { id: 39, name: 'Baby Clothes', link: 'https://example.com/baby-clothes', chosenBy: '' },
+  { id: 37, name: 'Diapers & diaper rash cream', link: 'https://example.com/diapers-rash-cream', chosenBy: '' }, // Fixed casing in "Diaper rash cream"
+  { id: 38, name: 'Nursing pads', link: 'https://example.com/nursing-pads', chosenBy: '' }, // Fixed casing in "Nursing Pads"
+  { id: 39, name: 'Baby clothes', link: 'https://example.com/baby-clothes', chosenBy: '' }, // Fixed casing in "Baby Clothes"
 ];
 
 export default function ListingComponent() {
@@ -105,17 +105,17 @@ export default function ListingComponent() {
     <main className="bg-white p-8">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-3xl font-bold text-center text-black">
-          Welcome to Kim's Baby Shower Registry 
+          Welcome to Kim&apos;s Baby Shower Registry
         </h2>
         <button
           onClick={handleEventModalOpen}
           className="bg-gray-500 text-white text-sm rounded-lg px-4 py-2 hover:bg-gray-600 transition duration-300 flex items-center"
         >
           <FontAwesomeIcon icon={faLocationDot} className="w-5 h-5 mr-2" />
-          When and Where ?
+          When and Where?
         </button>
       </div>
-      
+
       <div className="mb-6">
         <button
           onClick={handleReset}
@@ -206,7 +206,7 @@ export default function ListingComponent() {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
-            <h3 className="text-gray-800 text-xl font-bold mb-4">Who's Buying This Item?</h3>
+            <h3 className="text-gray-800 text-xl font-bold mb-4">Who&apos;s Buying This Item?</h3>
             <input
               type="text"
               value={buyerName}
